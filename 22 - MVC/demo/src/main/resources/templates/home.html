@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageName}"></title>
+</head>
+<body>
+<h1>Hello World</h1>
+
+
+<span th:style="${student.isMan() ? 'font-size:50px' : 'font-size:150px'}">
+Hello
+</span>
+
+<!--<ol>-->
+<!--    <li th:each="person : ${people}">-->
+<!--        <span th:text="${person.getName()}"></span>-->
+<!--        <span th:switch="${person.getAge()}">-->
+<!--            <span th:case="18">Maloy</span>-->
+<!--            <span th:case="29">Ditya</span>-->
+<!--            <span th:case="60">Pensioner</span>-->
+<!--        </span>-->
+<!--    </li>-->
+<!--</ol>-->
+
+<!--<div th:switch="${role}">-->
+<!--    <p th:case="'admin'">Vi Administrator</p>-->
+<!--    <p th:case="'moderator'">Vi Moderator</p>-->
+<!--    <p th:case="'user'">Vi Polzovatel</p>-->
+<!--    <p th:case="'guest'">Vi qost</p>-->
+<!--    <p th:case="*">Neizvestnaya rol</p>-->
+<!--</div>-->
+
+<!--<div th:switch="${day}">-->
+<!--    <p th:case="1">Yanvar</p>-->
+<!--    <p th:case="2">Fevral</p>-->
+<!--    <p th:case="3">Mart</p>-->
+<!--    <p th:case="*">Neizvestnayiy mesyac</p>-->
+<!--</div>-->
+
+<!--<span th:text="${name=='Farid'?'Farid Abdullayev' : 'Dostupa netu'}"></span>-->
+
+<!--&lt;!&ndash;if&ndash;&gt;-->
+<!--<th:block th:if="${name=='Farid'}">-->
+<!--    <div>Hello Mr <span th:text="${name}"></span> Admin</div>-->
+<!--</th:block>-->
+<!--&lt;!&ndash;else&ndash;&gt;-->
+<!--<div th:unless="${name=='Farid'}">-->
+<!--    <div>Hello <span th:text="${name}"></span> Admin</div>-->
+<!--</div>-->
+
+
+<!--<div th:if="${name=='Farid'}">-->
+<!--    <div>Hello Mr <span th:text="${name}"></span> Admin</div>-->
+<!--</div>-->
+
+<!--<div th:if="${name!='Farid'}">-->
+<!--    <div>Hello <span th:text="${name}"></span> Admin</div>-->
+<!--</div>-->
+
+<!--<div th:if="${isAdmin != null}">-->
+<!--    <div th:if="${(isAdmin and age <= 10) and age<10 }">-->
+<!--        <p> Hello Child <span th:text="${name}"></span> Admin</p>-->
+<!--    </div>-->
+
+<!--    <div th:if="${isAdmin and age > 10}">-->
+<!--        <div>Hello Mr <span th:text="${name}"></span> Admin</div>-->
+<!--    </div>-->
+
+<!--    <p th:if="${not isAdmin}">-->
+<!--        Hello  <span th:text="${name}"></span> User-->
+<!--    </p>-->
+<!--</div>-->
+
+<!--<div th:if="${isAdmin != null}">-->
+<!--    <div th:if="${isAdmin and age <= 10}">-->
+<!--      <p> Hello Child <span th:text="${name}"></span> Admin</p>-->
+<!--    </div>-->
+
+<!--    <div th:if="${isAdmin and age > 10}">-->
+<!--        <div>Hello Mr <span th:text="${name}"></span> Admin</div>-->
+<!--    </div>-->
+
+<!--    <p th:if="${!isAdmin}">-->
+<!--        Hello  <span th:text="${name}"></span> User-->
+<!--    </p>-->
+<!--</div>-->
+
+
+<!--<table border="1">-->
+<!--    <tr>-->
+<!--        <th>#</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Age</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="mat : ${matrix}">-->
+<!--        <td th:each="el : ${mat}">-->
+<!--            <span th:text="${el}"></span>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<!--<ol>-->
+<!--    <li th:each="person : ${people}" th:if="${person.getAge()>60}" th:style="${person.isMan() ? 'color:blue':'color:red'}">-->
+<!--        <span th:text="${person.getName()}"></span>-->
+<!--        <span th:text="${person.getSurname()}"></span>-->
+<!--        <span th:text="${person.getAge()}"></span>-->
+<!--        <span th:text="${person.getPhone()}"></span>-->
+<!--        <span th:text="${person.isMan()}"></span>-->
+<!--    </li>-->
+<!--</ol>-->
+
+<!--<ol>-->
+<!--    <li th:each="i : ${#numbers.sequence(0,100,10)}" th:text="${i}"></li>-->
+<!--</ol>-->
+
+<!--<ol>-->
+<!--    <li th:each="i : ${#numbers.sequence(0,100,10)}" th:text="${i}"></li>-->
+<!--</ol>-->
+
+<!--<ul>-->
+<!--<li th:each="code,countryStat : ${countries}">-->
+<!--    <span th:text="${code.key}"></span>-->
+<!--    <span th:text="${code.value}"></span>-->
+<!--    <span th:text="${country}"></span>-->
+<!--</li>-->
+<!--</ul>-->
+
+<!--<ul>-->
+<!--    <li th:each="entry : ${countries}">-->
+<!--        <span th:text="${entry.value}"></span>-->
+<!--        <span th:text="${entry.key}"></span>-->
+<!--    </li>-->
+<!--</ul>-->
+
+<!--<ol>-->
+<!--    <li th:each="str,stat : ${numbers}" >-->
+<!--        <span th:if="${stat.even}">+</span>-->
+<!--        <span th:if="${stat.odd}">-</span>-->
+<!--        <span th:if="${stat.first}"> (Первый)</span>-->
+<!--        <span th:text="${stat.last}">(Последий)</span>-->
+<!--    </li>-->
+<!--</ol>-->
+
+<!--<ol>-->
+<!--    <li th:each="str,stat : ${numbers}" >-->
+<!--&lt;!&ndash;        <span th:text="${stat}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${stat.index}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${stat.count}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${stat.size}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${stat.current}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:if="${stat.even}">CETNOE</span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:if="${stat.odd}">NE CETNOE</span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:if="${stat.first}"> (Первый)</span>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span th:text="${stat.last}">(Последий)</span>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        <span th:text="${stat.current}"></span>&ndash;&gt;-->
+<!--        <span th:if="${stat.even}">+</span>-->
+<!--        <span th:if="${stat.odd}">-</span>-->
+<!--        <span th:if="${stat.first}"> (Первый)</span>-->
+<!--        <span th:text="${stat.last}">(Последий)</span>-->
+<!--    </li>-->
+<!--</ol>-->
+
+<!--<p th:each="ok : ${arr}" th:text="${ok}"></p>-->
+
+
+<!--<hr>-->
+<!--<br>-->
+<!--<h1>Name : <span th:text="${student.getName()}"></span></h1>-->
+<!--<h1>Lastname : <span th:text="${student.getSurname()}"></span></h1>-->
+<!--<h1>Age : <span th:text="${student.getAge()}"></span></h1>-->
+<!--<h1>Phone : <span th:text="${student.getPhone()}"></span></h1>-->
+<!--&lt;!&ndash;<h1>Name : <span th:text="${surname.length()}"></span></h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Surname : <span th:text="${lastname}"></span></h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Father : <span th:text="${fathername}"></span></h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Mob : <span th:text="${phone}"></span></h1>&ndash;&gt;-->
+</body>
+</html>
