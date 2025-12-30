@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageName}"></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+
+<a class="btn clr" th:href="@{/home/clear}">Clear</a>
+<a class="btn addAll" th:href="@{/home/addAll}">Add All</a>
+<a class="btn add" th:href="@{/home/add}">Add</a>
+
+<div id="peopleTable" class="tb" th:if="${people!=null and !people.isEmpty()}">
+    <table border="1">
+       <thead>
+            <tr>
+                <th onclick="sortTable(0)">Id</th>
+                <th onclick="sortTable(1)">Name</th>
+                <th onclick="sortTable(2)">Surname</th>
+                <th onclick="sortTable(3)">Surname</th>
+                <th onclick="sortTable(4)">Email</th>
+                <th >Buttons</th>
+            </tr>
+       </thead>
+       <tbody>
+            <tr th:each="person : ${people}" th:attr="data-id=${person.getId()}">
+                <td th:text="${person.getId()}"></td>
+                <td th:text="${person.getName()}"></td>
+                <td th:text="${person.getSurname()}"></td>
+                <td th:text="${person.getEmail()}"></td>
+                <td th:text="${person.getAge()}"></td>
+                <td>
+                    <a class="dlt btn" th:onclick="'deleteByRow('+${person.getId()}+')'">Delete</a>
+                    <a class="dlt btn" th:href="@{/home/edit/{id}(id=${person.getId()})}">Edit</a>
+<!--                    <a class="dlt btn" th:href="@{/home/delete/{id}(id=${person.getId()})}">Delete</a>-->
+<!--                    <form onsubmit="return confirm('Vi uvereni cto xotite udalit?')" th:action="@{/home/delete/{id}(id=${person.getId()})}" method="post">-->
+<!--                        <input type="hidden" name="_method" value="delete">-->
+<!--                        <button class="dlt btn"  type="submit">Delete</button>-->
+<!--                    </form>-->
+<!--                    <a class="dlt btn" th:href="@{/home/delete/{id}(id=${person.getId()})}">Delete</a>-->
+
+
+                </td>
+            </tr>
+       </tbody>
+    </table>
+</div>
+
+
+<div th:if="${people==null or people.isEmpty()}">
+    <p>No data</p>
+</div>
+<script>
+
+
+    function approvRemove(id) {
+        return confirm("Are you sure?");
+    }
+
+    async function deleteByRow(id) {
+       if (!approvRemove()){
+           return;
+       }
+
+      let response = await fetch(`/home/api/delete/${id}`,
+          {
+              method:'DELETE'
+          });
+
+      if (response.ok){
+
+          let tr =  document.querySelector(`tr[data-id='${id}']`);
+          console.log(tr);
+          tr.remove();
+
+          console.log(response)
+          console.log("Dannie bili udaleni");
+          let text = await response.text();
+          console.log(text)
+      }else{
+          console.log("Not deleted")
+      }
+    }
+    let sortMulti = 1;
+
+    let sortStates = {};
+
+    function sortTable(index) {
+        let body = document.getElementsByTagName('tbody')[0];
+        let rows = Array.from(body.getElementsByTagName('tr'));
+        let headers = document.querySelectorAll('th');
+        console.log(rows)
+
+        if (sortStates[index] === undefined)  sortStates[index] = 'asc'
+
+        sortMulti = sortStates[index] === 'asc' ? 1: -1;
+
+      let sortedRows = rows.sort((rowA,rowB) => {
+            let cellA = rowA.cells[index].innerText.toLowerCase();
+            let cellB = rowB.cells[index].innerText.toLowerCase();
+
+            if (!isNaN(cellA) && !isNaN(cellB))
+                return sortMulti * (Number(cellA) - Number(cellB));
+
+            return sortMulti * (cellA.localeCompare(cellB));
+
+        });
+
+
+        for (const header of headers) {
+             header.innerText = header.innerText.split(' ')[0];
+        }
+
+        sortedRows.forEach(row=>{
+            body.appendChild(row);
+        });
+
+        if (sortStates[index] === 'asc'){
+            sortStates[index] = 'desc'
+            headers[index].innerText += ' ⬇'
+        }else{
+            sortStates[index] = 'asc'
+            headers[index].innerText += ' ⬆'
+        }
+    }
+</script>
+
+</body>
+</html>

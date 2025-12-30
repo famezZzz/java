@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageName}"></title>
+</head>
+<body>
+<h1>Create person</h1>
+<form method="post" action="http://localhost:8080/home/create">
+    Name : <input type="text" name="name"><br>
+    Surname : <input type="text" name="surname"><br>
+    Age : <input type="number" name="age"><br>
+
+    <button type="submit">Save</button>
+    <a href="http://localhost:8080/home/people">Cancel</a>
+</form>
+
+
+</body>
+</html>
